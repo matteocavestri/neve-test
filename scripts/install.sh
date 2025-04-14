@@ -248,13 +248,13 @@ service_config() {
 ##################################
 desktop_setup() {
   # Install utilities
-  xbps-install -Sy \
-    clang go rust nodejs python3 lua bash bash-completion \
-    cmake make \
-    python3-pipx cargo yarn luarocks \
-    git neovim tmux htop nvtop \
-    lazygit ripgrep fd fzf curl wget starship \
-    p7zip unzip xz tar rsync
+  # xbps-install -Sy \
+  #  clang go rust nodejs python3 lua bash bash-completion \
+  #  cmake make \
+  #  python3-pipx cargo yarn luarocks \
+  #  git neovim tmux htop nvtop \
+  #  lazygit ripgrep fd fzf curl wget starship \
+  #  p7zip unzip xz tar rsync
 
   # # Wayland
   # xbps-install -Sy \
@@ -277,12 +277,11 @@ desktop_setup() {
 
   # Setup graphics servers
   xbps-install -Sy \
-    mlocate ca-certificates xtools \
+    xtools \
     wl-clipboard libinput libnotify cliphist \
     wayland wayland-protocols wayland-utils xorg-server-xwayland \
     noto-fonts-ttf noto-fonts-cjk noto-fonts-emoji nerd-fonts \
     qt5-wayland qt6-wayland
-  fc-cache -fv
 
   # Install Desktop Environment and tools
   xbps-install -Sy \
@@ -291,22 +290,11 @@ desktop_setup() {
     kdegraphics-thumbnailers ffmpegthumbs \
     qpwgraph libreoffice firefox \
     dolphin-plugins xdg-user-dirs okular ark \
-    fuse ntfs-3g smbnetfs nfs-utils
+    fuse ntfs-3g smbnetfs nfs-utils sddm
 
   # Setup wine
   xbps-install -Sy \
     wine wine-gecko wine-mono
-
-  su "$USERNAME" -c "xdg-user-dirs-update"
-
-  # xbps-install -Sy \
-  #   greetd gtkgreet cage
-  # if [ -f /etc/greetd/config.toml ]; then
-  #   sed -i 's|command = ".*"|command = "cage -s -mextend -- gtkgreet"|' /etc/greetd/config.toml
-  # fi
-  # echo "dbus-run-session -- labwc
-  #   dbus-run-session -- sway" >>/etc/greetd/environments
-  # ln -s /etc/sv/greetd /var/service
 }
 
 ##################################
